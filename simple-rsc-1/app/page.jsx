@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { Albums } from './Albums.jsx';
 import { NestedApp } from './NestedApp.jsx';
 
 export default function Page() {

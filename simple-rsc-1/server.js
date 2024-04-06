@@ -44,8 +44,8 @@ app.get('/rsc', async (c) => {
 });
 
 app.get('/app/:port', async (c) => {
-	const { port } = c.req.param()
-	return fetch(`http://localhost:${port}/rsc`)
+	const { port } = c.req.param();
+	return fetch(`http://localhost:${port}/rsc`);
 });
 
 /**
@@ -55,21 +55,26 @@ app.get('/app/:port', async (c) => {
  */
 app.use('/build/*', serveStatic());
 
-app.use('/build/*', async (c, next) => {
-	try {
-		const r = await fetch('http://localhost:3002' + c.req.path);
-		return r
-	} catch (e) {
-		console.log('!!!');
-		console.error(e);
-	}
-	await next();
+app.use('/build/:app/*', async (c, next) => {
+	const appMap = {
+		'app-2': 3002,
+		'app-3': 3003
+	};
+
+	const port = appMap[c.req.param().app];
+
+	if (!port) return next();
+
+	return fetch(`http://localhost:${port}` + c.req.path.replace(c.req.param().app + '/', ''));
 });
 
-serve({
-	fetch: app.fetch,
-	port: 3001
-}, async (info) => {
-	await build();
-	console.log(`Listening on http://localhost:${info.port}`);
-});
+serve(
+	{
+		fetch: app.fetch,
+		port: 3001
+	},
+	async (info) => {
+		await build();
+		console.log(`Listening on http://localhost:${info.port}`);
+	}
+);

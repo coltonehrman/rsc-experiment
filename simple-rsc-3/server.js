@@ -9,27 +9,6 @@ import { clientComponentMap } from './component-map.js';
 const app = new Hono();
 
 /**
- * Endpoint to serve your index route.
- * Includes the loader `/build/_client.js` to request your server component
- * and stream results into `<div id="root">`
- */
-app.get('/', async (c) => {
-	return c.html(`
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>React Server Components from Scratch</title>
-		<script src="https://cdn.tailwindcss.com"></script>
-	</head>
-	<body>
-		<div id="root"></div>
-		<script type="module" src="/build/_client.js"></script>
-	</body>
-	</html>
-	`);
-});
-
-/**
  * Endpoint to render your server component to a stream.
  * This uses `react-server-dom-webpack` to parse React elements
  * into encoded virtual DOM elements for the client to read.
