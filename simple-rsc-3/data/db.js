@@ -14,7 +14,7 @@ import glassAnimalsHowToBeAMHumanBeing from './glass-animals-how-to-be.json';
  * @property {string} cover
  * @property {Song[]} songs
  */
-const albums = [bjorkPost, ladyGagaTheFame, glassAnimalsHowToBeAMHumanBeing, ladyGagaTheFame];
+const albums = [bjorkPost, ladyGagaTheFame, glassAnimalsHowToBeAMHumanBeing];
 
 const artificialWait = (ms = 1500) => new Promise((resolve) => setTimeout(resolve, ms));
 

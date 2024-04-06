@@ -42,6 +42,10 @@ client -> simple-rsc-1
 > 
 > **You should see all 3 apps render in parallel.**
 
+### Screenshot
+
+![Demo](./demo.png)
+
 ### Now What?
 
 - You can test out shutting down App 2 or 3 and refreshing App 1 in the browser to see what happens.
